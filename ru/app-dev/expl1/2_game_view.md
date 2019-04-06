@@ -66,7 +66,7 @@ $slot->begin();
 
 Добавляем небольшое поле, которое будет показывать следующиу фигуру.
 ```php
-	(new lx\Box(['width'=>4, 'text'=>'Next']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Next']))->align(lx::CENTER, lx::MIDDLE);
 	new lx\Table([
 		'key' => 'next',
 		'size' => [4, 4],
@@ -86,32 +86,32 @@ $slot->begin();
 
 Добавим поле, где будет выводиться текущий уровень игры. Парамерт `field` работает как `key` (если `key` не указан явно, но как правило в этом нет необходимости), плюс сообщает данному виджету, что он будет ослеживать поле с соответствующим названием (в нашем случае `level`) у модели, с которой виджет будет связан.
 ```php
-	(new lx\Box(['width'=>4, 'text'=>'Level:']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Level:']))->align(lx::CENTER, lx::MIDDLE);
 	(new lx\Box([
 		'field' => 'level',
 		'size' => [4, 2],
 		'style' => ['fill'=>'lightgray']
-	]))->align(\lx::CENTER, \lx::MIDDLE);
+	]))->align(lx::CENTER, lx::MIDDLE);
 ```
 
 Аналогично предыдущему, добавим поле, где будет выводиться количество убранных полос.
 ```php
-	(new lx\Box(['width'=>4, 'text'=>'Filled:']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Filled:']))->align(lx::CENTER, lx::MIDDLE);
 	(new lx\Box([
 		'field' => 'filled',
 		'size' => [4, 2],
 		'style' => ['fill'=>'lightgray']
-	]))->align(\lx::CENTER, \lx::MIDDLE);
+	]))->align(lx::CENTER, lx::MIDDLE);
 ```
 
 Аналогично предыдущему, добавим поле, где будет выводиться количество заработанных очков.
 ```php
-	(new lx\Box(['width'=>4, 'text'=>'Score:']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Score:']))->align(lx::CENTER, lx::MIDDLE);
 	(new lx\Box([
 		'field' => 'score',
 		'size' => [4, 2],
 		'style' => ['fill'=>'lightgray']
-	]))->align(\lx::CENTER, \lx::MIDDLE);
+	]))->align(lx::CENTER, lx::MIDDLE);
 ```
 
 Все необходимые поля созданы, закрываем форму.
@@ -121,7 +121,7 @@ $slot->end();
 
 Используем полезную форму для ввода значений, оформленную как блок. Блок реализован в сервисе `lx/lx-tools`, Вы ведь установили его?
 ```php
-$tools = \lx::getService('lx/lx-tools');
+$tools = lx::getService('lx/lx-tools');
 $tools->renderBlock('inputPopup');
 ```
 
@@ -165,7 +165,7 @@ $slot->begin();
 		'text' => 'New game'
 	]);
 
-	(new lx\Box(['width'=>4, 'text'=>'Next']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Next']))->align(lx::CENTER, lx::MIDDLE);
 	new lx\Table([
 		'key' => 'next',
 		'size' => [4, 4],
@@ -179,32 +179,32 @@ $slot->begin();
 		'text' => 'Pause'
 	]);
 
-	(new lx\Box(['width'=>4, 'text'=>'Level:']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Level:']))->align(lx::CENTER, lx::MIDDLE);
 	(new lx\Box([
 		'field' => 'level',
 		'size' => [4, 2],
 		'style' => ['fill'=>'lightgray']
-	]))->align(\lx::CENTER, \lx::MIDDLE);
+	]))->align(lx::CENTER, lx::MIDDLE);
 
-	(new lx\Box(['width'=>4, 'text'=>'Filled:']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Filled:']))->align(lx::CENTER, lx::MIDDLE);
 	(new lx\Box([
 		'field' => 'filled',
 		'size' => [4, 2],
 		'style' => ['fill'=>'lightgray']
-	]))->align(\lx::CENTER, \lx::MIDDLE);
+	]))->align(lx::CENTER, lx::MIDDLE);
 
-	(new lx\Box(['width'=>4, 'text'=>'Score:']))->align(\lx::CENTER, \lx::MIDDLE);
+	(new lx\Box(['width'=>4, 'text'=>'Score:']))->align(lx::CENTER, lx::MIDDLE);
 	(new lx\Box([
 		'field' => 'score',
 		'size' => [4, 2],
 		'style' => ['fill'=>'lightgray']
-	]))->align(\lx::CENTER, \lx::MIDDLE);
+	]))->align(lx::CENTER, lx::MIDDLE);
 $slot->end();
 
-$tools = \lx::getService('lx/lx-tools');
+$tools = lx::getService('lx/lx-tools');
 $tools->renderBlock('inputPopup');
 
 ```
 Проверим что у нас получилось, введем в браузере URL `your.domain/tetris/game`.
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/3_model.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/3_figures.md)

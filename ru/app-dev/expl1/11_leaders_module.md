@@ -25,14 +25,14 @@ $slot->begin();
 	$header->fill('lightgray');
 	$header->gridProportional();
 	$header->begin();
-		(new lx\Box([ 'text' => '#',     'width' => 1 ]))->align(\lx::CENTER, \lx::MIDDLE);
-		(new lx\Box([ 'text' => 'name',  'width' => 5 ]))->align(\lx::CENTER, \lx::MIDDLE);
-		(new lx\Box([ 'text' => 'score', 'width' => 3 ]))->align(\lx::CENTER, \lx::MIDDLE);
-		(new lx\Box([ 'text' => 'level', 'width' => 3 ]))->align(\lx::CENTER, \lx::MIDDLE);
+		(new lx\Box([ 'text' => '#',     'width' => 1 ]))->align(lx::CENTER, lx::MIDDLE);
+		(new lx\Box([ 'text' => 'name',  'width' => 5 ]))->align(lx::CENTER, lx::MIDDLE);
+		(new lx\Box([ 'text' => 'score', 'width' => 3 ]))->align(lx::CENTER, lx::MIDDLE);
+		(new lx\Box([ 'text' => 'level', 'width' => 3 ]))->align(lx::CENTER, lx::MIDDLE);
 	$header->end();
 
 	$info = new lx\Box([ 'key' => 'leadersTable', 'height' => 5 ]);
-	$info->stream([ 'direction' => \lx::VERTICAL ]);
+	$info->stream([ 'direction' => lx::VERTICAL ]);
 $slot->end();
 
 ```
