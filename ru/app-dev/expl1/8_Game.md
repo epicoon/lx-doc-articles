@@ -36,7 +36,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 * `timer` - экземпляр таймера
 * `map` - экземпляр карты игровой поверхности
 * `miniMap` - экземпляр карты для отображения следующей детали
-* `active` - флаг активности игры, чтобы можно было ставить на паузу
+* `active` - флаг активности игры, чтобы можно было ставить на паузу<br>
 Также запишем созданный экземпляр игры в переменную `gameInstance`, которую мы создали ранее, и которая недоступна извне:
 ```js
 	constructor() {
@@ -72,12 +72,13 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 	}
 ```
 
-Метод окончания игры. Останавливаем таймер, деактивируем кнопку паузы. После чего отправляем AJAX-запрос, чтобы узнать - занял ли игрок какое-то место. Синтаксис обращения к респонденту с клиентской стороны: `^RespondentName.methodName(...arguments):(result)=>{/* some code with result */};`. Если достойное место игрок смог занять - открываем форму для ввода его имени, после чего будет отправлен еще один запрос - на обновление таблицы лидеров. При получении ответа сообщаем супервизору событий о том, что обновилать таблица лидеров, по ключу события его можно будет отслеживать.
+Метод окончания игры. Останавливаем таймер, деактивируем кнопку паузы. После чего отправляем AJAX-запрос, чтобы узнать - занял ли игрок какое-то место. Синтаксис обращения к респонденту с клиентской стороны: `^RespondentName.methodName(...arguments):(result)=>{/* some code with result */};`. Если игрок смог занять достойное место - открываем форму для ввода его имени, после чего будет отправлен еще один запрос - на обновление таблицы лидеров. При получении ответа сообщаем супервизору событий о том, что обновилать таблица лидеров (это событие можно будет отслеживать по ключу `tetris_change_leaders`).
 ```js
 	over() {
 		this.active = false;
 		this.timer.stop();
 		Module->>pause.disabled(true);
+		lx.Tost('Game over');
 
 		^Respondent.checkLeaderPlace(this.score):(place)=>{
 			if (place === false) return;
@@ -87,12 +88,10 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 					name,
 					score: this.score,
 					level: this.level
-				}):()=>{lx.EventSupervisor.trigger('tetris_change_leaders')};
+				}):()=>lx.EventSupervisor.trigger('tetris_change_leaders');
 				lx.Tost('You was saved to the hall of honor!');
 			});
 		};
-
-		lx.Tost('Game over');
 	}
 ```
 
@@ -274,6 +273,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		this.active = false;
 		this.timer.stop();
 		Module->>pause.disabled(true);
+		lx.Tost('Game over');
 
 		^Respondent.checkLeaderPlace(this.score):(place)=>{
 			if (place === false) return;
@@ -283,12 +283,10 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 					name,
 					score: this.score,
 					level: this.level
-				}):()=>{lx.EventSupervisor.trigger('tetris_change_leaders')};
+				}):()=>lx.EventSupervisor.trigger('tetris_change_leaders');
 				lx.Tost('You was saved to the hall of honor!');
 			});
 		};
-
-		lx.Tost('Game over');
 	}
 
 	stop() {

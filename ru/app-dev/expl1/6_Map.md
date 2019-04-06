@@ -118,7 +118,7 @@ class Map #lx:namespace tetris {
 	}
 ```
 
-Добавим метод отрисовке на карте маски детали:
+Добавим метод отрисовки на карте маски детали:
 ```js
 	highlightFigure(figure) {
 		var cells = this.getFreeCells(figure.mask());

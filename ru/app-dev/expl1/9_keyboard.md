@@ -88,6 +88,7 @@ function confirmDirection(shift) {
 	if (attempts) figure.coords = coords;
 	return true;
 }
+```
 
 В итоге должен получиться такой код:
 ```js
