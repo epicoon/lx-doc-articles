@@ -4,7 +4,6 @@
 
 Опишем представление в файле `services/tetris/module/leaders/view/_root.php`. Принцип аналогичен описанному во [втором уроке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/2_game_view.md). Из нового - только использование стратегий позиционирования `streamProportional` и `stream`. Элемент `$header` будет содержать имена колонок. Элемент с ключом `leadersTable` заготовим чтобы в него выводить список лидеров. Сам вывод лидеров будет происходить на стороне клиента.
 ```php
-&lt;?php
 /**
  * @var lx\Module Module
  * @var lx\Block Block
@@ -40,8 +39,6 @@ $slot->end();
 
 Теперь модифицируем код респондента, находящийся в файле `service/tetris/module/leaders/backend/Respondent.php`. Добавим метод, возвращающий список лидеров.
 ```php
-&lt;?php
-
 namespace tetris\module\leaders\backend;
 
 class Respondent extends \lx\Respondent {

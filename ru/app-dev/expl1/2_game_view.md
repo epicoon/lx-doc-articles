@@ -4,7 +4,6 @@
 
 Будем писать код в файле `services/tetris/module/game/view/_root.php`. Данный файл уже содержит код:
 ```php
-&lt;?php
 /**
  * @var lx\Module $Module
  * @var lx\Block $Block
@@ -128,7 +127,6 @@ $tools->renderBlock('inputPopup');
 
 И так, получился такой код представления:
 ```php
-&lt;?php
 /**
  * @var lx\Module $Module
  * @var lx\Block $Block
