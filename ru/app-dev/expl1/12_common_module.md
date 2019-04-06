@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/12_common_module.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/12_common_module.md)
 
 ### Шаг 12. Модуль, консолидирующий предыдущие
 

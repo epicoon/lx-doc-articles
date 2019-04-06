@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/5_game_respondent.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/5_game_respondent.md)
 
 ### Шаг 5. Описание респондета для модуля "game"
 
@@ -67,4 +67,4 @@ class Respondent extends \lx\Respondent {
 
 На данном этапе больше ничего не нужно. Идем дальше.
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/6_Map.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/6_Map.md)

@@ -41,4 +41,3 @@
      ]
 }
 ```
-[Обратно к lx-документации](https://github.com/epicoon/lx-core/ru/lx-core/README-ru.md)

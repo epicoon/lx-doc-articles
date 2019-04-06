@@ -41,4 +41,3 @@ Packages for load:
      ]
 }
 ```
-[Return to lx-documentation](https://github.com/epicoon/lx-core/ru/lx-core)

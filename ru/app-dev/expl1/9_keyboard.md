@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/9_keyboard.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/9_keyboard.md)
 
 ### Шаг 9. Оживление клавиатуры
 
@@ -155,4 +155,4 @@ function confirmDirection(shift) {
 
 ```
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/10_game_complete.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/10_game_complete.md)

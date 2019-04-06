@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/7_Timer.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/7_Timer.md)
 
 ### Шаг 7. Создание таймера
 
@@ -44,4 +44,4 @@ class Timer extends lx.Timer #lx:namespace tetris {
 
 ```
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/8_Game.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/8_Game.md)

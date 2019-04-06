@@ -1,8 +1,8 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/11_leaders_module.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/11_leaders_module.md)
 
 ### Шаг 11. Модуль для визуализации лидеров
 
-Опишем представление в файле `services/tetris/module/leaders/view/_root.php`. Принцип аналогичен описанному во [втором уроке](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/2_game_view.md). Из нового - только использование стратегий позиционирования `streamProportional` и `stream`. Элемент `$header` будет содержать имена колонок. Элемент с ключом `leadersTable` заготовим чтобы в него выводить список лидеров. Сам вывод лидеров будет происходить на стороне клиента.
+Опишем представление в файле `services/tetris/module/leaders/view/_root.php`. Принцип аналогичен описанному во [втором уроке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/2_game_view.md). Из нового - только использование стратегий позиционирования `streamProportional` и `stream`. Элемент `$header` будет содержать имена колонок. Элемент с ключом `leadersTable` заготовим чтобы в него выводить список лидеров. Сам вывод лидеров будет происходить на стороне клиента.
 ```php
 &lt;?php
 /**
@@ -136,4 +136,4 @@ lx.EventSupervisor.subscribe('tetris_change_leaders', ()=>loadLeaders());
 
 Теперь мы можем проверить в браузере что получилось по URL `your.domain/tetris/leaders`.
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/12_common_module.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/12_common_module.md)

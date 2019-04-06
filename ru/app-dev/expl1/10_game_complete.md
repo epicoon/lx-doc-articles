@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/10_game_complete.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/10_game_complete.md)
 
 ### Шаг 10. Собираем все воедино. Играем
 
@@ -22,4 +22,4 @@ Module->>pause.click(()=> game.toggleActivity());
 
 Посделним мазком навешиваем на кнопки обработчики событий. Запускаем игру, пробуем.
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/11_leaders_module.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/11_leaders_module.md)

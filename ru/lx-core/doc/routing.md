@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/lx-core/doc/routing.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/lx-core/doc/routing.md)
 
 ## Роутинг
 
@@ -105,7 +105,7 @@ router:
   ```
   Тогда роут `admin/some-route-1` будет переадресован на сервис `adminService` в виде пути `some-route-1`, а запрос `admin/some-route-2` будет переадресован на сервис `adminService` в виде пути `some-route-2`.
 
-![Схема роутинга приложения](https://github.com/epicoon/lx-doc-articles/ru/lx-core/images/architecture-scheme.png)
+![Схема роутинга приложения](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/images/architecture-scheme.png)
 
 
 <a name="service"><h3>Роутинг сервиса</h3></a>
@@ -133,4 +133,4 @@ router:
     some-route-4: {module: moduleName}
 ```
 
-![Схема внутрисервисного роутинга](https://github.com/epicoon/lx-doc-articles/ru/lx-core/images/service-routing.png)
+![Схема внутрисервисного роутинга](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/images/service-routing.png)

@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/4_model.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/4_model.md)
 
 ### Шаг 4. Создание модели TetrisLeader
 
@@ -68,4 +68,4 @@ Service: tetris
 ```
 Выполним команду `migrate-run`, изменения будут применены, а именно: в базе данных создастся таблица `tetris_leader` и в нее добавится пять записей. Теперь если мы посмотрим на содержимое файла `service/tetis/model/TetrisLeader.yaml`, директиву мы уже не увидим. В то же время, если проверить базу данных - обнаружим там таблицу и нужные нам записи.
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/5_game_respondent.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/5_game_respondent.md)

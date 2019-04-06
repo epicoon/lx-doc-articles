@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/app-dev/expl1/2_game_view.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/2_game_view.md)
 
 ### Шаг 2. Формирование представления игры
 
@@ -209,4 +209,4 @@ $tools->renderBlock('inputPopup');
 ```
 Проверим что у нас получилось, введем в браузере URL `your.domain/tetris/game`.
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/ru/app-dev/expl1/3_model.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/3_model.md)

@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/lx-core/doc/app-config.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/lx-core/doc/app-config.md)
 
 ## Конфигурация приложения
 
@@ -133,7 +133,7 @@ router:
     # все подходящие запросы перенаправятся на указанный сервис
     ~^admin\b: my/admin
 ```
-Подробнее о формате карты можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/ru/lx-core/doc/routing.md).
+Подробнее о формате карты можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/doc/routing.md).
 
 
 <a name="language"><h3>Параметр конфигурации: <b>language</b></h3></a>
@@ -169,8 +169,8 @@ configInjection:
     # Заменяем текущую карту интернационализации
     i18nMap: i18n\devWizard\Translater
 ```
-Какие параметры имеются в конфигурации сервиса, можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/ru/lx-core/doc/service-config.md).<br>
-Какие параметры имеются в конфигурации модуля, можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/ru/lx-core/doc/module-config.md).
+Какие параметры имеются в конфигурации сервиса, можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/doc/service-config.md).<br>
+Какие параметры имеются в конфигурации модуля, можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/doc/module-config.md).
 
 
 <a name="js"><h3>Параметры конфигурации: <b>jsBootstrap</b> и <b>jsMain</b></h3></a>
@@ -181,4 +181,4 @@ configInjection:
 
 <a name="i18nFile"><h3>Параметр конфигурации: <b>i18nFile</b></h3></a>
 Данному ключу в конфигурации приложения сопоставляется путь к карте интернационализации.<br>
-[Подробнее о механизме интернационализации](https://github.com/epicoon/lx-doc-articles/ru/lx-core/doc/i18n.md).
+[Подробнее о механизме интернационализации](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/doc/i18n.md).

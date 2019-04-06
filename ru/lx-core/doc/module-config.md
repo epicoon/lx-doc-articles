@@ -1,4 +1,4 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/en/lx-core/doc/module-config.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/lx-core/doc/module-config.md)
 
 ## Конфигурация модуля
 
