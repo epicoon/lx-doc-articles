@@ -83,7 +83,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		^Respondent.checkLeaderPlace(this.score):(place)=>{
 			if (place === false) return;
 
-			Module->inputPopup.open('You took place ' + res + '. Enter your name', (name)=>{
+			Module->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
 				^Respondent.updateLeaders({
 					name,
 					score: this.score,
@@ -278,7 +278,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		^Respondent.checkLeaderPlace(this.score):(place)=>{
 			if (place === false) return;
 
-			Module->inputPopup.open('You took place ' + res + '. Enter your name', (name)=>{
+			Module->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
 				^Respondent.updateLeaders({
 					name,
 					score: this.score,
