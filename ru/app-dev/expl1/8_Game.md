@@ -4,14 +4,14 @@
 
 Настало время реализовать сердце логики - класс `tetris.Game`. Не следует рассматривать код данного класса как образец архитектурного решения, т.к. как минимум две идеи, решаемые данным классом, можно вынести в отдельные классы. Но для упрощения примера, и с учетом того, что масштабирование в данном случае нам вряд ли понадобится, вполне преемлемо реализовать данный класс так, как предложено ниже.
 
-Поскольку класс `tetris.Game` играет центральную роль в логике модуля, создадим для него файл `Game.js` рядом с файлом `_main.js` в каталоге `services/tetris/module/game/frontend`.
+Поскольку класс `tetris.Game` играет центральную роль в логике плагина, создадим для него файл `Game.js` рядом с файлом `_main.js` в каталоге `services/tetris/plugin/game/frontend`.
 
 Начинаем писать код. Директива `#lx:private;` инкапсулирует код, находящийся в данном файле, в независимом контексте выполнения. Фактически, при сборке JS-кода, код из файлов с такой директивой оборачивается анонимной функцией, которая тут же выполняется. Соответственно, все переменные, объявленные в файле не будут доступны извне. Исключением являются классы, помещаемые в пространства имен - к ним доступ будет иметься через эти пространства имен.
 ```js
 #lx:private;
 ```
 
-Следующие две строчки - использование директивы `#lx:require`. Данная директива выполняет подключение кода по указанному адресу. В качестве адреса можно указать путь к файлу. Так как подключаются только файлы с расширением `.js`, расширение указывать не обязательно. Также путь может быть указан к директории (тогда путь должен заканчиваться символом `/`), тогда будут подключены все файлы с расширением `.js`, непосредственно находящиеся в директории (если же перед путем указать опцию `-R`, то файлы будут подключены рекурсивно и из вложенных директорий). При этом при указании пути можно использовать псевдонимы, можно указать путь относительно корня сайта (если путь начинается с символа `/`), можно указать путь относительно сервиса или модуля (примерно так: `#lx:require {service:some/serviceName}path/in/service`).
+Следующие две строчки - использование директивы `#lx:require`. Данная директива выполняет подключение кода по указанному адресу. В качестве адреса можно указать путь к файлу. Так как подключаются только файлы с расширением `.js`, расширение указывать не обязательно. Также путь может быть указан к директории (тогда путь должен заканчиваться символом `/`), тогда будут подключены все файлы с расширением `.js`, непосредственно находящиеся в директории (если же перед путем указать опцию `-R`, то файлы будут подключены рекурсивно и из вложенных директорий). При этом при указании пути можно использовать псевдонимы, можно указать путь относительно корня сайта (если путь начинается с символа `/`), можно указать путь относительно сервиса или плагина (примерно так: `#lx:require {service:some/serviceName}path/in/service`).
 ```js
 #lx:require figures/;
 #lx:require classes/;
@@ -46,8 +46,8 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		this.activeFigure = null;
 
 		this.timer = new tetris.Timer(this);
-		this.map = new tetris.Map(Module->>map);
-		this.miniMap = new tetris.Map(Module->>next);
+		this.map = new tetris.Map(Plugin->>map);
+		this.miniMap = new tetris.Map(Plugin->>next);
 
 		this.active = false;
 
@@ -62,13 +62,13 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 	}
 ```
 
-Нужен метод запуска новой игры. Для этого сбрасываются все текущие данные, генерируется первая в новой игровой сессии деталь, сама игра активируется. Также обеспечим кликабельность кнопки паузы кодом `Module->>pause.disabled(false)`: переменная `Module` доступна во всем JS-коде модуля и представляет экземпляр модуля, оператор `->>` осуществляет поиск виджета, в данном случае с ключом `pause`.
+Нужен метод запуска новой игры. Для этого сбрасываются все текущие данные, генерируется первая в новой игровой сессии деталь, сама игра активируется. Также обеспечим кликабельность кнопки паузы кодом `Plugin->>pause.disabled(false)`: переменная `Plugin` доступна во всем JS-коде плагина и представляет экземпляр плагина, оператор `->>` осуществляет поиск виджета, в данном случае с ключом `pause`.
 ```js
 	newGame() {
 		this.reset();
 		this.genFigure();
 		this.resume();
-		Module->>pause.disabled(false);
+		Plugin->>pause.disabled(false);
 	}
 ```
 
@@ -77,13 +77,13 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 	over() {
 		this.active = false;
 		this.timer.stop();
-		Module->>pause.disabled(true);
+		Plugin->>pause.disabled(true);
 		lx.Tost('Game over');
 
 		^Respondent.checkLeaderPlace(this.score):(place)=>{
 			if (place === false) return;
 
-			Module->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
+			Plugin->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
 				^Respondent.updateLeaders({
 					name,
 					score: this.score,
@@ -101,7 +101,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		if (!this.active) return;
 		this.active = false;
 		this.timer.stop();
-		Module->>pause.text('Resume');
+		Plugin->>pause.text('Resume');
 	}
 ```
 
@@ -111,7 +111,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		if (this.active) return;
 		this.active = true;
 		this.timer.start();
-		Module->>pause.text('Pause');
+		Plugin->>pause.text('Pause');
 	}
 ```
 
@@ -250,8 +250,8 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		this.activeFigure = null;
 
 		this.timer = new tetris.Timer(this);
-		this.map = new tetris.Map(Module->>map);
-		this.miniMap = new tetris.Map(Module->>next);
+		this.map = new tetris.Map(Plugin->>map);
+		this.miniMap = new tetris.Map(Plugin->>next);
 
 		this.active = false;
 
@@ -266,19 +266,19 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		this.reset();
 		this.genFigure();
 		this.resume();
-		Module->>pause.disabled(false);
+		Plugin->>pause.disabled(false);
 	}
 
 	over() {
 		this.active = false;
 		this.timer.stop();
-		Module->>pause.disabled(true);
+		Plugin->>pause.disabled(true);
 		lx.Tost('Game over');
 
 		^Respondent.checkLeaderPlace(this.score):(place)=>{
 			if (place === false) return;
 
-			Module->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
+			Plugin->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
 				^Respondent.updateLeaders({
 					name,
 					score: this.score,
@@ -293,14 +293,14 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		if (!this.active) return;
 		this.active = false;
 		this.timer.stop();
-		Module->>pause.text('Resume');
+		Plugin->>pause.text('Resume');
 	}
 
 	resume() {
 		if (this.active) return;
 		this.active = true;
 		this.timer.start();
-		Module->>pause.text('Pause');
+		Plugin->>pause.text('Pause');
 	}
 
 	toggleActivity() {

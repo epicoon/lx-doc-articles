@@ -41,11 +41,11 @@ service:
   router:
     type: map
     routes:
-      /: {module: main}
-      game: {module: game}
-      leaders: {module: leaders}
+      /: {plugin: main}
+      game: {plugin: game}
+      leaders: {plugin: leaders}
 
-  modules: module
+  plugins: plugin
   models: model
   modelCrudAdapter: lx\DbCrudAdapter
 

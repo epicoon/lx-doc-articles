@@ -1,12 +1,12 @@
-[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/11_leaders_module.md)
+[Английская версия (English version)](https://github.com/epicoon/lx-doc-articles/blob/master/en/app-dev/expl1/11_leaders_plugin.md)
 
-### Шаг 11. Модуль для визуализации лидеров
+### Шаг 11. Плагин для визуализации лидеров
 
-Опишем представление в файле `services/tetris/module/leaders/view/_root.php`. Принцип аналогичен описанному во [втором уроке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/2_game_view.md). Из нового - только использование стратегий позиционирования `streamProportional` и `stream`. Элемент `$header` будет содержать имена колонок. Элемент с ключом `leadersTable` заготовим, чтобы в него выводить список лидеров. Сам вывод лидеров будет происходить на стороне клиента.
+Опишем представление в файле `services/tetris/plugin/leaders/snippets/_root.php`. Принцип аналогичен описанному во [втором уроке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/2_game_view.md). Из нового - только использование стратегий позиционирования `streamProportional` и `stream`. Элемент `$header` будет содержать имена колонок. Элемент с ключом `leadersTable` заготовим, чтобы в него выводить список лидеров. Сам вывод лидеров будет происходить на стороне клиента.
 ```php
 /**
- * @var lx\Module Module
- * @var lx\Block Block
+ * @var lx\Plugin Plugin
+ * @var lx\Snippet Snippet
  * */
 
 $leaders = new lx\Box();
@@ -37,9 +37,9 @@ $slot->end();
 
 ```
 
-Теперь модифицируем код респондента, находящийся в файле `service/tetris/module/leaders/backend/Respondent.php`. Добавим метод, возвращающий список лидеров.
+Теперь модифицируем код респондента, находящийся в файле `service/tetris/plugin/leaders/backend/Respondent.php`. Добавим метод, возвращающий список лидеров.
 ```php
-namespace tetris\module\leaders\backend;
+namespace tetris\plugin\leaders\backend;
 
 class Respondent extends \lx\Respondent {
 	public function getLeaders() {
@@ -58,7 +58,7 @@ class Respondent extends \lx\Respondent {
 
 ```
 
-Задача JS-кода данного модуля - выводить списов лидеров. Код будет находиться в файле `services/tetris/module/leaders/frontend/_main.js`.<br>
+Задача JS-кода данного модуля - выводить списов лидеров. Код будет находиться в файле `services/tetris/plugin/leaders/frontend/_main.js`.<br>
 С самим списком удобно работать в виде коллекции моделей. Есть очень лаконичный синтаксис, позволяющий создать коллекцию определенных моделей: `#lx:model-collection collectionName = ModelName;`. Таким образом мы создаем пустую коллекцию, в которую можно передавать данные для создания моделей.<br>
 ```js
 #lx:model-collection leadersList = TetrisLeader;
@@ -69,7 +69,7 @@ class Respondent extends \lx\Respondent {
 * `itemBox` - конфигурация для виджета, который будет представлять отдельный элемент коллекции
 * `itemRender` - коллбэк, который будет вызываться при создании очередного виджета, представляющего отдельный элемент коллекции. Коллбэк в качестве аргументов получает сам виджет и соответствующую модель (в нашем случае модель нам здесь не нужна, мы ее не принимаем). В коде коллбэка предполагается описание как именно будет визуализирована модель. В нашем случае мы создаем поля формы, которые будут автоматически связываться с соответствующими полями моделей.
 ```js
-Module->>leadersTable.matrix({
+Plugin->>leadersTable.matrix({
 	items: leadersList,
 	itemBox: [ lx.Form, {grid: true} ],
 	itemRender: function(form) {
@@ -104,7 +104,7 @@ lx.EventSupervisor.subscribe('tetris_change_leaders', ()=>loadLeaders());
 ```js
 #lx:model-collection leadersList = TetrisLeader;
 
-Module->>leadersTable.matrix({
+Plugin->>leadersTable.matrix({
 	items: leadersList,
 	itemBox: [ lx.Form, {grid: true} ],
 	itemRender: function(form) {
@@ -132,4 +132,4 @@ lx.EventSupervisor.subscribe('tetris_change_leaders', ()=>loadLeaders());
 
 Теперь мы можем проверить в браузере что получилось по URL `your.domain/tetris/leaders`.
 
-[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/12_common_module.md)
+[Следующий шаг](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/12_common_plugin.md)

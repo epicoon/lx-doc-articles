@@ -6,7 +6,7 @@ Packages for load:
 * `lx/lx-doc` - documentation for classes of packages used in platform
 * `lx/lx-demo` - set of demonstaration for different platform instruments
 * `lx/lx-dev-wizard` - set of usefull development instruments
-* `lx/lx-tools` - set of commonly used modules and blocks in applications
+* `lx/lx-tools` - set of commonly used plugins and snippets in applications
 
 ```json
 {

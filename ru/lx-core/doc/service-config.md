@@ -11,7 +11,7 @@
 * [class](#class)
 * [aliases и useCommonAliases](#aliases)
 * [router](#router)
-* [modules и dynamicModules](#modules)
+* [plugins и dynamicPlugins](#plugins)
 * [models](#models)
 * [modelCrudAdapter](#modelCrudAdapter)
 * [db и dbList](#db)
@@ -42,14 +42,14 @@ service:
   router:
     type: map
     routes:
-      some-route: { module: main }
-      some-route/special: { module: someModule }
+      some-route: { plugin: main }
+      some-route/special: { plugin: somePlugin }
 
-  modules: module
-  dynamicModules:
-    someModule:
-      prototype: some/service-name:someModuleProtorype
-      params: { paramName: value }
+  plugins: plugin
+  dynamicPlugins:
+    somePlugin:
+      prototype: some/service-name:somePluginPrototype
+      renderParams: { paramName: value }
 
   models: model
   modelCrudAdapter: \lx\DbCrudAdapter
@@ -80,7 +80,7 @@ packagesMap:
 * получать экземпляр самого сервиса:
   ```php
   // Код PHP
-  $service = \lx::getService('super-star/mega-package');
+  $service = \lx::$app->getService('super-star/mega-package');
   ```
 * получать путь к каталогу сервиса:
   ```php
@@ -169,7 +169,7 @@ aliases:
 // Код PHP
 
 // Получение пути
-$path = $service->getFileName('@someAlias/someFile');
+$path = $service->getFilePath('@someAlias/someFile');
 
 // Получение файла
 $file = $service->getFile('@anotherAlias/someFile');
@@ -197,49 +197,46 @@ router:
     # Направление запроса на экшен. Будет возвращен результат вызова метода экшена [[run()]]
     some-route-3: {action: ActionClassName}
 
-    # Направление запроса на модуль. Будет возвращен результат рендеринга модуля
-    some-route-4: {module: moduleName}
+    # Направление запроса на плагин. Будет возвращен результат рендеринга плагина
+    some-route-4: {plugin: pluginName}
 ```
 Подробнее о механизме роутинга можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/doc/routing.md).
 
 
-<a name="modules"><h3>Параметры конфигурации: <b>modules</b> и <b>dynamicModules</b></h3></a>
-Ключу `modules` в конфигурации сервиса сопоставляется массив путей, или один путь (относительно корневого каталога сервиса) к каталогам, в которых располагаются модули данного сервиса. Имена каталогов модулей являются именами самих модулей.<br>
+<a name="plugins"><h3>Параметры конфигурации: <b>plugins</b> и <b>dynamicPlugins</b></h3></a>
+Ключу `plugins` в конфигурации сервиса сопоставляется массив путей, или один путь (относительно корневого каталога сервиса) к каталогам, в которых располагаются плагины данного сервиса. Имена каталогов плагинов являются именами самих плагинов.<br>
 Пример:
 ```yaml
 name: current/service
 
 service:
-  # Модули сервиса будут располагаться в каталоге 'path/to/current/service/module'
-  modules: module
+  # Модули сервиса будут располагаться в каталоге 'path/to/current/service/plugin'
+  plugins: plugin
 ```
-В каталоге `path/to/current/service/module` создаем модуль с именем `myModule`, тогда каталог этого модуля располагается по пути `path/to/current/service/module/myModule`. Сам модуль в коде доступен по имени `current/service:myModule`, это означает, что можно, например, написать такой код, в файле любого блока любого другого модуля:
-```php
-// Получаем экземпляр модуля
-$module = \lx::getModule('current/service:myModule');
-
+В каталоге `path/to/current/service/plugin` создаем плагин с именем `myPlugin`, тогда каталог этого плагина располагается по пути `path/to/current/service/plugin/myPlugin`. Сам плагин в коде доступен по имени `current/service:myPlugin`, это означает, что можно, например, написать такой код в файле любого сниппета любого другого плагина:
+```js
 // Создадим виджет
-$box = new lx\Box($boxConfig);
+let box = new lx.Box(boxConfig);
 
 // Модуль будет срендерен в данном виджете
-$box->setModule($module);
+box.setPlugin('current/service:myPlugin');
 ```
 
-Ключу `dynamicModules` в конфигурации сервиса сопоставляется ассоциативный массив, ключами которого являются имена динамических модулей, формируемых для данного сервиса, а значениями - данные о модуле-прототипе.<br>
+Ключу `dynamicPlugins` в конфигурации сервиса сопоставляется ассоциативный массив, ключами которого являются имена динамических плагинов, формируемых для данного сервиса, а значениями - данные о плагине-прототипе.<br>
 Пример:
 ```yaml
 name: current/service
 
 service:
-  dynamicModules:
-    # Данный модуль будет доступен по имени 'current/service:models'
+  dynamicPlugins:
+    # Данный плагин будет доступен по имени 'current/service:models'
     models:
-      # Выбираем прототип для динамического модуля - какой-то другой модуль
+      # Выбираем прототип для динамического плагина - какой-то другой плагин
       prototype: lx/lx-dev-wizard:modelManager
       # Можно передать параметры, если прототипу они нужны
-      params: { service: current/service }
+      renderParams: { service: current/service }
 ```
-Динамический модуль формируется исключительно в конфигурации, в остальном он функционирует также, как обычный модуль. К нему можно из любого места кода обращаться по имени, его можно рендерить в любых блоках.
+Динамический плагин формируется исключительно в конфигурации, в остальном он функционирует также, как обычный плагин. К нему можно из любого места кода обращаться по имени, его можно рендерить в любых сниппетах.
 
 
 <a name="models"><h3>Параметр конфигурации: <b>models</b></h3></a>
@@ -297,7 +294,7 @@ dbList:
 
 <a name="i18nMap"><h3>Параметры конфигурации: <b>i18nMap</b> и <b>i18nFile</b></h3></a>
 Ключу `i18nMap` в конфигурации сервиса сопоставляется информация об инструменте интернационализации.<br>
-Если параметр не сконфигурирован, используется класс `lx\I18nMap`.
+Если параметр не сконфигурирован, используется класс `lx\I18nServiceMap`.
 
 Ключу `i18nFile` в конфигурации сервиса сопоставляется путь к карте интернационализации.
 
