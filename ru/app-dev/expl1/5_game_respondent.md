@@ -28,7 +28,7 @@ class Respondent extends \lx\Respondent {
 			return;
 		}
 
-		$leaders = $this->getLeaders();
+		$leaders = $this->loadLeaders();
 		for ($i = 4; $i >= $place; $i--) {
 			$prevLeaderFields = $leaders[$i - 1]->getFields(['name', 'level', 'score']);
 			$leaders[$i]->setFields($prevLeaderFields);			
@@ -43,7 +43,7 @@ class Respondent extends \lx\Respondent {
 Мы использовали метод `checkLeaderPlaceProcess`, в который предполагается вынесение логики определения занятого места, реализуем его:
 ```php
 	private function checkLeaderPlaceProcess($score) {
-		$leaders = $this->getLeaders();
+		$leaders = $this->loadLeaders();
 		foreach ($leaders as $leader) {
 			if ($score > $leader->score) {
 				return $leader->place;
@@ -54,9 +54,9 @@ class Respondent extends \lx\Respondent {
 	}
 ```
 
-Также мы использовали метод получения текущих лидеров `getLeaders`, реализуем и его:
+Также мы использовали метод получения текущих лидеров `loadLeaders`, реализуем и его:
 ```php
-	private function getLeaders() {
+	private function loadLeaders() {
 		return $this->getModelManager('TetrisLeader')->loadModels([
 			'ORDER BY' => 'place ASC',
 		]);

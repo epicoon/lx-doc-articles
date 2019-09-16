@@ -8,7 +8,7 @@ class Timer extends lx.Timer #lx:namespace tetris {
 }
 ```
 
-В конструктор передадим экземпляр игры. Флаг `counterOn` выставим в `false`, т.к. считать периоды в стиле секундомера нам не нужно. Длительность периода определим как 500 миллисекунд:
+В конструктор передадим экземпляр игры. Флаг `counterOn` выставим в `false`, т.к. считать периоды в стиле секундомера нам не нужно. Длительность периода определим как 500 миллисекунд. В метод `onCycleEnds()`, передадим обработчик события, который будет вызываться в конце каждого периода (в нашем случае каждые 500 миллисекунд). При этом будем вызывать метод `fallFigure()` экземпляра игры, который инициирует падение детали вниз:
 ```js
 	constructor(owner) {
 		super();
@@ -16,13 +16,8 @@ class Timer extends lx.Timer #lx:namespace tetris {
 		this.owner = owner;
 		this.counterOn = false;
 		this.periodDuration = 500;
-	}
-```
 
-Переоределим родительский метод `iteration()`, который вызывается в конце каждого периода (в нашем случае каждые 500 миллисекунд). При этом будем вызывать метод `fallFigure()` экземпляра игры, который инициирует падение детали вниз:
-```js
-	iteration() {
-		this.owner.fallFigure();
+		this.onCycleEnds(()=>this.owner.fallFigure());
 	}
 ```
 
@@ -35,10 +30,8 @@ class Timer extends lx.Timer #lx:namespace tetris {
 		this.owner = owner;
 		this.counterOn = false;
 		this.periodDuration = 500;
-	}
 
-	iteration() {
-		this.owner.fallFigure();
+		this.onCycleEnds(()=>this.owner.fallFigure());
 	}
 }
 

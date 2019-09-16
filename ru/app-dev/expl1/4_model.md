@@ -5,7 +5,6 @@
 Чтобы продемонстрировать работу с моделями данных, предусмотрим функционал сохранения пяти лучших результатов по итогам игр. Для этого создадим модель `TetrisLeader`. В каталоге `services/tetris/model` создадим файл `TetrisLeader.yaml`, добавим в него описание нашей модели:
 ```yaml
 TetrisLeader:
-  table: tetris_leader
   fields:
     name: {type: varchar}
     place: {type: integer}

@@ -2,38 +2,41 @@
 
 ### Шаг 11. Плагин для визуализации лидеров
 
-Опишем представление в файле `services/tetris/plugin/leaders/snippets/_root.php`. Принцип аналогичен описанному во [втором уроке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/2_game_view.md). Из нового - только использование стратегий позиционирования `streamProportional` и `stream`. Элемент `$header` будет содержать имена колонок. Элемент с ключом `leadersTable` заготовим, чтобы в него выводить список лидеров. Сам вывод лидеров будет происходить на стороне клиента.
-```php
+Опишем представление в файле `services/tetris/plugin/leaders/snippets/_root.js`. Принцип аналогичен описанному во [втором уроке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/app-dev/expl1/2_game_view.md). Из нового - только использование стратегий позиционирования `streamProportional` и `stream`. Элемент `header` будет содержать имена колонок. Элемент с ключом `leadersTable` заготовим, чтобы в него выводить список лидеров. Сам вывод лидеров будет происходить на стороне клиента.
+```js
 /**
- * @var lx\Plugin Plugin
- * @var lx\Snippet Snippet
+ * @const lx.Application App
+ * @const lx.Plugin Plugin
+ * @const lx.Snippet Snippet
  * */
 
-$leaders = new lx\Box();
-$leaders->fill('white');
-$leaders->slot([
-	'indent' => '10px',
-	'cols' => 1,
-	'rows' => 1,
-	'k' => 1.3,
-]);
+#lx:use lx.Form;
 
-$slot = $leaders->child(0);
-$slot->streamProportional(['indent' => '10px']);
-$slot->begin();
-	$header = new lx\Box();
-	$header->fill('lightgray');
-	$header->gridProportional();
-	$header->begin();
-		(new lx\Box([ 'text' => '#',     'width' => 1 ]))->align(lx::CENTER, lx::MIDDLE);
-		(new lx\Box([ 'text' => 'name',  'width' => 5 ]))->align(lx::CENTER, lx::MIDDLE);
-		(new lx\Box([ 'text' => 'score', 'width' => 3 ]))->align(lx::CENTER, lx::MIDDLE);
-		(new lx\Box([ 'text' => 'level', 'width' => 3 ]))->align(lx::CENTER, lx::MIDDLE);
-	$header->end();
+let leaders = new lx.Box({geom:true});
+leaders.fill('white');
+leaders.slot({
+	indent: '10px',
+	cols: 1,
+	rows: 1,
+	k: 1.3
+});
 
-	$info = new lx\Box([ 'key' => 'leadersTable', 'height' => 5 ]);
-	$info->stream([ 'direction' => lx::VERTICAL ]);
-$slot->end();
+let slot = leaders.child(0);
+slot.streamProportional({indent:'10px'});
+slot.begin();
+	let header = new lx.Box();
+	header.fill('lightgray');
+	header.gridProportional();
+	header.begin();
+		(new lx.Box({text:'#',     width:1})).align(lx.CENTER, lx.MIDDLE);
+		(new lx.Box({text:'name',  width:5})).align(lx.CENTER, lx.MIDDLE);
+		(new lx.Box({text:'score', width:3})).align(lx.CENTER, lx.MIDDLE);
+		(new lx.Box({text:'level', width:3})).align(lx.CENTER, lx.MIDDLE);
+	header.end();
+
+	let info = new lx.Box({key:'leadersTable', height:5});
+	info.stream({direction: lx.VERTICAL});
+slot.end();
 
 ```
 
@@ -58,7 +61,7 @@ class Respondent extends \lx\Respondent {
 
 ```
 
-Задача JS-кода данного модуля - выводить списов лидеров. Код будет находиться в файле `services/tetris/plugin/leaders/frontend/_main.js`.<br>
+Задача клиентского JS-кода данного модуля - выводить списов лидеров. Код будет находиться в файле `services/tetris/plugin/leaders/frontend/_main.js`.<br>
 С самим списком удобно работать в виде коллекции моделей. Есть очень лаконичный синтаксис, позволяющий создать коллекцию определенных моделей: `#lx:model-collection collectionName = ModelName;`. Таким образом мы создаем пустую коллекцию, в которую можно передавать данные для создания моделей.<br>
 ```js
 #lx:model-collection leadersList = TetrisLeader;

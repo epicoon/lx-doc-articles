@@ -22,10 +22,10 @@
 let gameInstance = null;
 ```
 
-Начинаем писать класс. Отнаследуем его от класса `lx.BindableModel`. Данный класс представляет из себя модель, которая может связываться с виджетами. Модели имеют схемы, в схемах описываются поля, которые могут отслеживаться виджетами. В качестве схемы зададим три поля, которые планируем отображать: `level` - текущий уровень игры, `filled` - количество заполненных рядов и `score` - текущее количество очков.
+Начинаем писать класс. Отнаследуем его от класса `lx.BindableModel`. Данный класс представляет из себя модель, которая может связываться с виджетами. Модели имеют схемы, в схемах описываются поля, которые могут отслеживаться виджетами. В качестве схемы зададим три поля, которые планируем отображать: `level` - текущий уровень игры, `lines` - количество заполненных рядов и `score` - текущее количество очков.
 ```js
 class Game extends lx.BindableModel #lx:namespace tetris {
-	#lx:schema level, filled, score;
+	#lx:schema level, lines, score;
 }
 
 ```
@@ -132,7 +132,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 
 		this.level = 1;
 		this.setSpeed();
-		this.filled = 0;
+		this.lines = 0;
 		this.score = 0;
 		this.map.reset();
 	}
@@ -177,7 +177,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 ```js
 	fallFigure() {
 		if (!this.moveFigure([0, 1]))
-			this.fixFigure();		
+			this.fixFigure();
 	}
 ```
 
@@ -199,11 +199,11 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 
 Метод увеличения счетчика заполненных рядов. Тут начисляются очки - за одновременное заполнение нескольких рядов очков будет больше. За каждые 10 заполненных рядов повышаем уровень игры.
 ```js
-	addFilled(filled) {
-		this.filled += filled;
+	addLines(lines) {
+		this.lines += lines;
 
 		var score = 0;
-		switch (filled) {
+		switch (lines) {
 			case 1: score = 1; break;
 			case 2: score = 3; break;
 			case 3: score = 6; break;
@@ -212,7 +212,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 
 		this.score += score;
 
-		var level = Math.floor(this.filled * 0.1) + 1;
+		var level = Math.floor(this.lines * 0.1) + 1;
 		if (level != this.level) this.upLevel();
 	}
 ```
@@ -241,7 +241,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 let gameInstance = null;
 
 class Game extends lx.BindableModel #lx:namespace tetris {
-	#lx:schema level, filled, score;
+	#lx:schema level, lines, score;
 
 	constructor() {
 		super();
@@ -315,7 +315,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 
 		this.level = 1;
 		this.setSpeed();
-		this.filled = 0;
+		this.lines = 0;
 		this.score = 0;
 		this.map.reset();
 	}
@@ -367,11 +367,11 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		this.genFigure();
 	}
 
-	addFilled(filled) {
-		this.filled += filled;
+	addLines(lines) {
+		this.lines += lines;
 
 		var score = 0;
-		switch (filled) {
+		switch (lines) {
 			case 1: score = 1; break;
 			case 2: score = 3; break;
 			case 3: score = 6; break;
@@ -380,7 +380,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 
 		this.score += score;
 
-		var level = Math.floor(this.filled * 0.1) + 1;
+		var level = Math.floor(this.lines * 0.1) + 1;
 		if (level != this.level) this.upLevel();
 	}
 

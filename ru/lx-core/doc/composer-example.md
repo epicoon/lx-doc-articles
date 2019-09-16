@@ -38,6 +38,11 @@
             "type":"git",
             "url":"https://github.com/epicoon/lx-tools"
         }
-     ]
+    ],
+    "scripts": {
+        "post-update-cmd": [
+            "php vendor/lx/lx-core/lx-install"
+        ]
+    }
 }
 ```

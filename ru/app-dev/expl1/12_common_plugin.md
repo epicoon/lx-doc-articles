@@ -4,31 +4,33 @@
 
 Объединим оба плагина `game` и `leaders` в одном. После чего можно будет даже убрать роутинг на эти отдельные плагины.
 
-Будем писать код в файле `services/tetris/plugin/main/snippets/_root.php`.
+Будем писать код в файле `services/tetris/plugin/main/snippets/_root.js`.
 
-Все максимально просто. Для каждого плагина создаем виджет `lx\ActiveBox` и загружаем в них соответствующие плагины. Ключи `adhesive` в конфигурациях создания данных виджетов делают их края прилипающими друг к другу.
-```php
+Все максимально просто. Для каждого плагина создаем виджет `lx.ActiveBox` и загружаем в них соответствующие плагины. Ключи `adhesive` в конфигурациях создания данных виджетов делают их края прилипающими друг к другу.
+```js
 /**
- * @var lx\Application $App
- * @var lx\Plugin $Plugin
- * @var lx\Snippet $Snippet
+ * @const lx.Application App
+ * @const lx.Plugin Plugin
+ * @const lx.Snippet Snippet
  * */
 
-$tetris = new lx\ActiveBox([
-	'geom' => [5, 5, 40, 90],
-	'header' => 'Tetris',
-	'adhesive' => true,
-]);
-$tetris->border();
-$tetris->get('body')->setPlugin($App->getPlugin('tetris:game'));
+#lx:use lx.ActiveBox;
 
-$leaders = new lx\ActiveBox([
-	'geom' => [55, 10, 40, 40],
-	'header' => 'Leaders',
-	'adhesive' => true,
-]);
-$leaders->border();
-$leaders->get('body')->setPlugin($App->getPlugin('tetris:leaders'));
+let tetris = new lx.ActiveBox({
+	geom: [5, 5, 40, 90],
+	header: 'Tetris',
+	adhesive: true
+});
+tetris.border();
+tetris.setPlugin('tetris:game');
+
+let leaders = new lx.ActiveBox({
+	geom: [55, 10, 40, 40],
+	header: 'Leaders',
+	adhesive: true
+});
+leaders.border();
+leaders.setPlugin('tetris:leaders');
 ```
 
 Поздравляю, теперь Вы знаете слишком много...
