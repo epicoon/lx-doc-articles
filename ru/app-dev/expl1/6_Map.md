@@ -31,7 +31,7 @@ class Map #lx:namespace tetris {
 	cellIsFilled(row, col) {
 		return (this.rows[row]
 			&& this.rows[row].isArray
-			&& this.rows[row].contain(col)
+			&& this.rows[row].contains(col)
 		);
 	}
 ```
@@ -162,7 +162,7 @@ class Map #lx:namespace tetris {
 	cellIsFilled(row, col) {
 		return (this.rows[row]
 			&& this.rows[row].isArray
-			&& this.rows[row].contain(col)
+			&& this.rows[row].contains(col)
 		);
 	}
 
