@@ -232,7 +232,7 @@ service:
     # Данный плагин будет доступен по имени 'current/service:models'
     models:
       # Выбираем прототип для динамического плагина - какой-то другой плагин
-      prototype: lx/lx-dev-wizard:modelManager
+      prototype: lx/lx-model:modelManager
       # Можно передать параметры, если прототипу они нужны
       renderParams: { service: current/service }
 ```

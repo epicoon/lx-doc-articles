@@ -146,9 +146,9 @@ router:
 ```yaml
 configInjection:
   # Прокидываем в конфигурацию сервиса параметры
-  lx/lx-dev-wizard:
+  lx/lx-model:
     # Заменяем текущую карту интернационализации
-    i18nMap: i18n\devWizard\Translater
+    i18nMap: i18n\model\Translater
 ```
 Какие параметры имеются в конфигурации сервиса, можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/doc/service-config.md).<br>
 Какие параметры имеются в конфигурации плагина, можно узнать по [ссылке](https://github.com/epicoon/lx-doc-articles/blob/master/ru/lx-core/doc/plugin-config.md).

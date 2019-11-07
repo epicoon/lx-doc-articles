@@ -3,19 +3,21 @@
 
 Загружаемые пакеты:
 * `lx/lx-core` - ядро lx-платформы
+* `lx/lx-tools` - набор часто используемых в приложениях виджетов и сниппетов
+* `lx/lx-model` - ORM для lx-платформы
+* `lx/lx-auth` - инструменты аутентификации OAuth2 и авторизации RBAC
 * `lx/lx-doc` - документация классов для используемых в платформе пакетов
 * `lx/lx-demo` - набор демонстраций различных инструментов
-* `lx/lx-dev-wizard` - набор инструментов, помогающих в разработке
-* `lx/lx-tools` - набор часто используемых в приложениях виджетов и сниппетов
 
 ```json
 {
     "require":{
         "lx/lx-core":"dev-master",
+        "lx/lx-tools":"dev-master",
+        "lx/lx-model":"dev-master",
+        "lx/lx-auth":"dev-master",
         "lx/lx-doc":"dev-master",
-        "lx/lx-demo":"dev-master",
-        "lx/lx-dev-wizard":"dev-master",
-        "lx/lx-tools":"dev-master"
+        "lx/lx-demo":"dev-master"
     },
     "repositories":[
         {
@@ -24,19 +26,23 @@
         },
         {
             "type":"git",
+            "url":"https://github.com/epicoon/lx-tools"
+        },
+        {
+            "type":"git",
+            "url":"https://github.com/epicoon/lx-model"
+        },
+        {
+            "type":"git",
+            "url":"https://github.com/epicoon/lx-auth"
+        },
+        {
+            "type":"git",
             "url":"https://github.com/epicoon/lx-doc"
         },
         {
             "type":"git",
             "url":"https://github.com/epicoon/lx-demo"
-        },
-        {
-            "type":"git",
-            "url":"https://github.com/epicoon/lx-dev-wizard"
-        },
-        {
-            "type":"git",
-            "url":"https://github.com/epicoon/lx-tools"
         }
     ],
     "scripts": {
