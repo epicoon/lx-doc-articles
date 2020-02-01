@@ -72,7 +72,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 	}
 ```
 
-Метод окончания игры. Останавливаем таймер, деактивируем кнопку паузы. После чего отправляем AJAX-запрос, чтобы узнать - занял ли игрок какое-то место. Синтаксис обращения к респонденту с клиентской стороны: `^RespondentName.methodName(...arguments):(result)=>{/* some code with result */};`. Если игрок смог занять достойное место - открываем форму для ввода его имени, после чего будет отправлен еще один запрос - на обновление таблицы лидеров. При получении ответа сообщаем супервизору событий о том, что обновилать таблица лидеров (это событие можно будет отслеживать по ключу `tetris_change_leaders`).
+Метод окончания игры. Останавливаем таймер, деактивируем кнопку паузы. После чего отправляем AJAX-запрос, чтобы узнать - занял ли игрок какое-то место. Синтаксис обращения к респонденту с клиентской стороны: `^RespondentName.methodName(...arguments).then((result)=>{/* some code with result */});`. Если игрок смог занять достойное место - открываем форму для ввода его имени, после чего будет отправлен еще один запрос - на обновление таблицы лидеров. При получении ответа сообщаем супервизору событий о том, что обновилать таблица лидеров (это событие можно будет отслеживать по ключу `tetris_change_leaders`).
 ```js
 	over() {
 		this.active = false;
@@ -80,7 +80,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		Plugin->>pause.disabled(true);
 		lx.Tost('Game over');
 
-		^Respondent.checkLeaderPlace(this.score):(place)=>{
+		^Respondent.checkLeaderPlace(this.score).then((place)=>{
 			if (place === false) return;
 
 			Plugin->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
@@ -88,10 +88,10 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 					name,
 					score: this.score,
 					level: this.level
-				}):()=>lx.EventSupervisor.trigger('tetris_change_leaders');
+				}).then(()=>lx.EventSupervisor.trigger('tetris_change_leaders'));
 				lx.Tost('You was saved to the hall of honor!');
 			});
-		};
+		});
 	}
 ```
 
@@ -275,7 +275,7 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 		Plugin->>pause.disabled(true);
 		lx.Tost('Game over');
 
-		^Respondent.checkLeaderPlace(this.score):(place)=>{
+		^Respondent.checkLeaderPlace(this.score).then((place)=>{
 			if (place === false) return;
 
 			Plugin->inputPopup.open('You took place ' + place + '. Enter your name', (name)=>{
@@ -283,10 +283,10 @@ class Game extends lx.BindableModel #lx:namespace tetris {
 					name,
 					score: this.score,
 					level: this.level
-				}):()=>lx.EventSupervisor.trigger('tetris_change_leaders');
+				}).then(()=>lx.EventSupervisor.trigger('tetris_change_leaders'));
 				lx.Tost('You was saved to the hall of honor!');
 			});
-		};
+		});
 	}
 
 	stop() {

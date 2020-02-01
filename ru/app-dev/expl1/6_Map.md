@@ -93,7 +93,7 @@ class Map #lx:namespace tetris {
 				var rowFrom = this.widget.row(i),
 					rowTo = this.widget.row(i + filled);
 
-				rowFrom.each((cellFrom)=> {
+				rowFrom.eachChild((cellFrom)=> {
 					if (!this.cellIsFilled(i, cellFrom.index)) return;
 					var cellTo = rowTo.cell(cellFrom.index);
 					this.highlightCell(cellTo, cellFrom.style('backgroundColor'));
@@ -212,7 +212,7 @@ class Map #lx:namespace tetris {
 				var rowFrom = this.widget.row(i),
 					rowTo = this.widget.row(i + filled);
 
-				rowFrom.each((cellFrom)=> {
+				rowFrom.eachChild((cellFrom)=> {
 					if (!this.cellIsFilled(i, cellFrom.index)) return;
 					var cellTo = rowTo.cell(cellFrom.index);
 					this.highlightCell(cellTo, cellFrom.style('backgroundColor'));

@@ -90,10 +90,10 @@ Plugin->>leadersTable.matrix({
 Добавим функцию обновления коллекции моделей. Данные запрашиваем у респондента. Сразу вызовем эту функцию, чтобы при загрузке страницы таблица лидеров уже отобразилась.
 ```js
 function loadLeaders() {
-	^Respondent.getLeaders():(list)=>{
+	^Respondent.getLeaders().then((list)=>{
 		leadersList.clear();
 		list.each((leaderData)=>leadersList.add(leaderData));
-	};
+	});
 }
 loadLeaders();
 ```
@@ -122,10 +122,10 @@ Plugin->>leadersTable.matrix({
 });
 
 function loadLeaders() {
-	^Respondent.getLeaders():(list)=>{
+	^Respondent.getLeaders().then((list)=>{
 		leadersList.clear();
 		list.each((leaderData)=>leadersList.add(leaderData));
-	};
+	});
 }
 loadLeaders();
 
